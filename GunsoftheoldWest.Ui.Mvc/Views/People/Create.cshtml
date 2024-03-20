@@ -1,0 +1,37 @@
+﻿@model Person
+@{
+    ViewBag.Title = "Create";
+}
+
+<form method="post" asp-action="Create" asp-controller="People">
+     
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <label asp-for="FirstName">First Name:</label>
+            <input asp-for="FirstName" class="form-control" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <label asp-for="LastName">Last Name:</label>
+            <input asp-for="LastName" class="form-control" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <label asp-for="Email">Email Address:</label>
+            <input asp-for="Email" class="form-control" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <label asp-for="Phone">Telephone Number:</label>
+            <input asp-for="Phone" class="form-control" required />
+        </div>
+    </div>
+    <br></br>
+    <button type="submit" class="btn btn-primary custom-button">Submit</button>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary custom-button">Return to Home</a>
+   
+</form>

@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col text-center">
+                <h1 class="display-1 mb-5">Guns of the Old West</h1>
+                <button id="shootButton" class="round-button">Shoot</button>
+                <p id="bulletCount">12 more bullets</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var remainingBullets = sessionStorage.getItem('remainingBullets');
+
+        if (remainingBullets === null) {
+            remainingBullets = 12;
+        } else {
+            remainingBullets = parseInt(remainingBullets);
+        }
+
+        document.getElementById('bulletCount').innerText = remainingBullets + (remainingBullets === 1 ? " more bullet" : " more bullets");
+
+        document.getElementById('shootButton').addEventListener('click', function () {
+            if (remainingBullets > 1) {
+                remainingBullets--;
+                document.getElementById('bulletCount').innerText = remainingBullets + (remainingBullets === 1 ? " more bullet" : " more bullets");
+                var randomNumber = Math.floor(Math.random() * 11);
+                console.log("Random number: " + randomNumber);
+                if (randomNumber <= 3) {
+                    window.location.href = '@Url.Action("Winner", "Home")';
+                }
+            } else {
+                remainingBullets = 0;
+                window.location.href = '@Url.Action("Sales", "Home")';
+            }
+            sessionStorage.setItem('remainingBullets', remainingBullets.toString());
+        });
+    </script>
+</body>
